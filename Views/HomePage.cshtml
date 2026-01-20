@@ -1,0 +1,14 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
+@{
+	Layout = null;
+}
+
+@using UmbracoContactFormProject.Models;
+
+<link rel="stylesheet" href="~/css/contact-form.css" asp-append-version="true" />
+
+@{
+    Html.RenderPartial("~/Views/Partials/ContactForm.cshtml", new ContactFormViewModel());
+}
