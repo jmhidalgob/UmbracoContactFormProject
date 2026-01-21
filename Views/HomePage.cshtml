@@ -12,3 +12,5 @@
 @{
     Html.RenderPartial("~/Views/Partials/ContactForm.cshtml", new ContactFormViewModel());
 }
+
+@await Component.InvokeAsync("ContactList")

@@ -1,0 +1,40 @@
+@model IEnumerable<UmbracoContactFormProject.Persistence.ContactMessageSchema>
+
+<div class="contact-form-container">
+
+    <hr />
+
+    <div class="messages-list">
+        <h3>Mensajes Recibidos</h3>
+        
+        @if (Model != null && Model.Any())
+        {
+            <table class="table-custom">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Mensaje</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CreateDate.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+                            <td>@item.Message</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No hay mensajes todavía.</p>
+        }
+    </div>
+
+</div>

@@ -1,7 +1,7 @@
 using NPoco;
 using Umbraco.Cms.Infrastructure.Persistence.DatabaseAnnotations;
 
-namespace UmbracoContactFormProject.Models;
+namespace UmbracoContactFormProject.Persistence;
 
 [TableName("ContactMessages")]
 [PrimaryKey("Id", AutoIncrement = true)]
