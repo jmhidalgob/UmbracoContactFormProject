@@ -14,13 +14,14 @@ public class ContactListViewComponent : ViewComponent
         _scopeProvider = scopeProvider;
     }
 
-    public IViewComponentResult Invoke()
+    public IViewComponentResult Invoke(int maxItems = 10) // Default to 10 items
     {   
-        Console.WriteLine("ENTRA EN EL COMPONENTE ContactListViewComponent");
+        Console.WriteLine("ENTRA EN EL COMPONENTE ContactListViewComponent" +
+            " para obtener los últimos " + maxItems + " mensajes de contacto.");
 
         using var scope = _scopeProvider.CreateScope();
         var messages = scope.Database.Fetch<ContactMessageSchema>(
-            "SELECT * FROM ContactMessages ORDER BY CreateDate DESC LIMIT 10"
+            "SELECT * FROM ContactMessages ORDER BY CreateDate DESC LIMIT @0", maxItems
         );
         scope.Complete();
 

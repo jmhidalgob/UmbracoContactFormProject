@@ -3,11 +3,26 @@
 @using ContentModels = Umbraco.Cms.Web.Common.PublishedModels;
 @{
 	Layout = null;
+    var menuItems = Model.Root().Children;
 }
 
 @using UmbracoContactFormProject.Models;
 
 <link rel="stylesheet" href="~/css/contact-form.css" asp-append-version="true" />
+
+
+
+<nav>
+    <ul>
+        @foreach (var item in menuItems)
+        {
+            <li class="@(item.Id == Model.Id ? "active" : null)">
+                <a href="@item.Url()">@item.Name</a>
+            </li>
+        }
+    </ul>
+</nav>
+
 
 @{
     Html.RenderPartial("~/Views/Partials/ContactForm.cshtml", new ContactFormViewModel());

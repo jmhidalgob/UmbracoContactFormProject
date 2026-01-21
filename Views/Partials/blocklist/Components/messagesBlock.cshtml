@@ -1,0 +1,27 @@
+﻿@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListItem>
+
+@{
+    var title = Model.Content.Value<string>("title") ?? "Listado de Mensajes";
+}
+
+<link rel="stylesheet" href="~/css/contact-form.css" asp-append-version="true" />
+
+@{
+    var settings = Model.Settings as MessagesBlockSettings;
+    
+    int limit = 10;
+    if (settings != null && !string.IsNullOrEmpty(settings.MaxItems?.ToString()))
+    {
+        int.TryParse(settings.MaxItems.ToString(), out limit);
+    }
+    
+    // Aseguramos que el límite sea mayor que 0
+    limit = limit > 0 ? limit : 10;
+
+}
+
+<section class="my-reusable-block">
+    <h3>@title</h3>    
+    @await Component.InvokeAsync("ContactList", new { maxItems = limit })
+</section>
