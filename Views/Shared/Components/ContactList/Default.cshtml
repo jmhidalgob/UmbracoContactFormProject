@@ -1,5 +1,9 @@
 @model IEnumerable<UmbracoContactFormProject.Persistence.ContactMessageSchema>
 
+@using Umbraco.Cms.Web.Common
+@using Umbraco.Extensions
+@inject UmbracoHelper Umbraco
+
 <div class="contact-form-container">
 
     <hr />
@@ -13,7 +17,7 @@
                 <thead>
                     <tr>
                         <th>Fecha</th>
-                        <th>Nombre</th>
+                        <th>@Umbraco.GetDictionaryValue("Contact.Form.Name")</th>
                         <th>Email</th>
                         <th>Mensaje</th>
                     </tr>

@@ -1,0 +1,16 @@
+@using Umbraco.Extensions
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+
+<div class="language-picker">
+    <ul>
+        @foreach (var (culture, infos) in Model.Cultures)
+        {
+            <li class="@(culture == Model.GetCultureFromDomains() ? "active" : "")">
+                <a href="@Model.Url(culture)" hreflang="@culture">
+                    @* Mostramos el nombre del idioma (ej: English o Español) *@
+                    @System.Globalization.CultureInfo.GetCultureInfo(culture).DisplayName
+                </a>
+            </li>
+        }
+    </ul>
+</div>
